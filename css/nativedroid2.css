@@ -219,8 +219,11 @@ code {
 }
 .ui-collapsible.ui-collapsible h3 a,
 .ui-collapsible.ui-collapsible-collapsed.ui-collapsible h3 a:hover {
-	font-weight: 500;
-	background-color: rgba(0,0,0,0.1);
+	    font-weight: 500;
+    background-color: rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #000;
+	
 }
 
 .ui-panel-dismiss {

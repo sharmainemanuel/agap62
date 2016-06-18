@@ -30,6 +30,7 @@ $(document).ready(function()
 	  	console.log("initial" + initialposition);
 	   	map.setCenter(initialposition);map.setZoom(5);
       marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map, icon:"img/man.png"});
+      marker.setAnimation(google.maps.Animation.BOUNCE);
       marker.setMap(map);
 	  });
     }
@@ -55,7 +56,8 @@ function initialize(vLat, vLong, vZoom)
   map.mapTypes.set("map_style", mapReference);
   map.setMapTypeId("map_style");
 
-  var kmzLayer = new google.maps.KmlLayer('http://m.weather.gov.ph/agaptest/track.kmz',{preserveViewport:true});
+  //var kmzLayer = new google.maps.KmlLayer('http://m.weather.gov.ph/agaptest/track.kmz',{preserveViewport:true});
+  var kmzLayer = new google.maps.KmlLayer('http://publicalert.pagasa.dost.gov.ph/file/track.kmz',{preserveViewport:true});
   kmzLayer.setMap(map);
 
 

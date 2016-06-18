@@ -120,7 +120,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Current Weather</a></li>
+						<li><a href="forecast.html" data-ajax='false' data-icon="false">Daily Forecast</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
 						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
@@ -161,7 +162,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Radar and Satellite</h3>
+					<h3>Weather Forecast Images</h3>
 					<ul data-role="listview" data-icon="false">
 						<li><a href="weathermap.html#weathermap" data-ajax='false'>Weather Map</a></li>
 						<li><a href="satellite.html#satellite" data-ajax='false'>Satellite</a></li>
@@ -177,6 +178,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
+				<ul data-role="listview" data-inset="false"><a href="history.html" data-ajax='false'>NOTIFICATION</a></ul>
+			
 				<div class="user-menu">
 					<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
@@ -212,8 +215,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 
 			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
 	
-			<div data-role="nd2tab" data-tab="friends" data-swipe="true">	
-			
+	
 					
 			<div id="demo"> </div>	
 		<img id="imgLoader" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
@@ -230,25 +232,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 			<pre id="log"></pre>
 			<pre class="classList"></pre>
 			
-			</div>
-			
-			<div data-role="nd2tab" data-tab="work" data-swipe="true">
-					<div class="nd2-card card-media-right card-media-small">
-				<div >
-				
-					<div class="card-title has-avatar has-supporting-text">
-					
-						<img class="card-avatar" src="img/alert-circle.png">
-					
-						<h3 class="card-primary-title">Daily Forecast</h3>
-					
-						<h5 class="card-supporting-text"><div id="rss-feeds" style='text-align: justify;'></div></h5>
-					</div>
-				
-				</div>
-			</div>
-			
-			</div>
+		
+
 			
 			<div data-role="popup" id="sharePopupDialog">
 
@@ -296,12 +281,10 @@ mytime=setTimeout('AjaxFunction();',refresh)
         <script type="text/javascript" src="js/PushwooshiOS.js"></script>
 		<script type="text/javascript" src="js/PushwooshWP.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-		
-		<script type="text/javascript">
+        
+        <script type="text/javascript">
             app.initialize();
         </script>
-        
-        
 	
 		<script>
 		function errMsg()	{
@@ -371,7 +354,6 @@ mytime=setTimeout('AjaxFunction();',refresh)
   	];
     
     window.onload = function () {
-	onLoad();
 	timer_function();
 	console.log(navigator.geolocation.getCurrentPosition(UserLocation)==undefined);
         if ( !navigator.geolocation.getCurrentPosition(UserLocation)==undefined )
@@ -392,8 +374,6 @@ mytime=setTimeout('AjaxFunction();',refresh)
 								   ttl : 500 // optional, time-to-live in ms (default: 3000)
 								 });
 		}
-		
-		
           
     }
 
@@ -510,27 +490,6 @@ function getData(){
 	
 	});
 	</script>
-	
-	<script type="text/javascript" charset="utf-8">
-
-				// Wait for device API libraries to load
-				//
-				function onLoad() {
-					document.addEventListener("deviceready", onDeviceReady, false);
-					console.log("onload works");
-					app.initialize();
-					onDeviceReady();
-				}
-
-				// device APIs are available
-				//
-				function onDeviceReady() {
-					// Now safe to use device APIs
-					console.log("onDeviceReady works");
-					app.initialize();
-				}
-
-		</script>
 </body>
 
 </html>

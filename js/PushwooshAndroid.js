@@ -35,21 +35,31 @@ function registerPushwooshAndroid() {
 
 			//and show alert
 			alert(title);
-			
-				//kamote store to json
-				var d = new Date();
-				var n = d.getMilliseconds();
-				var testObject = { 'id': n, 'message': title };
 
-				// Put the object into storage
-				localStorage.setItem('testObject', JSON.stringify(testObject));
+			var d = new Date();
+			var n = d.getMilliseconds();
+			var testObject;
+			var myArr={'id': n, 'message': title, 'mdate': '', 'mtime': ''};
+	;
+			var t=[];
+			var retrieveObject; 
+			// localStorage.setItem('testObject', JSON.stringify('testObject'));
 
-				// Retrieve the object from storage
-				var retrievedObject = localStorage.getItem('testObject');
-
-				console.log('retrievedObject: ', JSON.parse(retrievedObject));
-			
-			//end store to json
+			// var retrieveObject = localStorage.getItem('testObject');
+			// console.log('retrieveObject: ', JSON.parse(retrieveObject));
+			console.log(localStorage.getItem('testObject'));
+			if(!localStorage.getItem('testObject')===null){
+				retrieveObject = localStorage.getItem('testObject');
+				t=localStorage.getItem('testObject',JSON.parse(retrieveObject));
+				console.log(t);
+				n=t.length;
+			} else {
+				localStorage.setItem('testObject',  JSON.stringify(myArr));
+			}
+			myArr = localStorage.getItem('testObject');
+			testObject = {'id': n, 'message': title, 'mdate': d.getMonth()+"/"+d.getDay()+"/"+d.getFullYear(), 'mtime': d.getHours() + ":" + ((d.getMinutes()<10)? "0" + d.getMinutes(): d.getMinutes())};
+			myArr.push(testObject);
+			localStorage.setItem('testObject', JSON.stringify(myArr));
 
 			//stopping geopushes
 			//pushNotification.stopGeoPushes();
@@ -57,13 +67,13 @@ function registerPushwooshAndroid() {
 	);
 
 	//initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-	pushNotification.onDeviceReady({ projectid: "183997037267 ", appid : "36C52-0C80E" });
+	pushNotification.onDeviceReady({ projectid: "183997037267 ", pw_appid : "524D8-141AA" });
 
-	//register for push notifications
+	//register for push notifica tions
 	pushNotification.registerDevice(
 		function(token)
 		{
-			alert(token);
+			console.log(token);
 			//callback when pushwoosh is ready
 			onPushwooshAndroidInitialized(token);
 		},

@@ -8,6 +8,10 @@ body {
   opacity: 0.5;
     filter: Alpha(opacity=50);
 }
+a.ui-link.waves-effect.waves-button {
+    color: #000;
+    text-decoration: none;
+}
 /*
 user/*/
 .user-menu {

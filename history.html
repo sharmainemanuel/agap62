@@ -1,10 +1,10 @@
 
-
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Project AGAP</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
 		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
@@ -14,14 +14,28 @@
 		<style>/* Prevent FOUC */body { opacity: 0; }</style>
 		<style type="text/css">
 			#showDaily,#showDailyHome {margin-left:12%;}
-			.forecast {margin-left:9%;padding-top:5%;}
-			.wIcon{margin-left: -24px;}</style>
+			.forecast {margin-left:12%;padding-top:5%;}
+			.wIcon{margin-left: -8px;}
+
+			img.mapimage {
+			    position: relative;
+			    width: 50%;
+
+			} 
+
+			img.overlayradar {
+			    position: absolute;
+			    top: 0%;
+			    left: 0%;
+			    width: 50%;
+
+			}
+		</style>
 
 	</head>
 	<body >
-
-		<div data-role="page" id="warnings_cyclone">
-			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+		<div data-role="page" id="satellite">
+		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -44,7 +58,7 @@
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-			<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Current Weather</a></li>
+						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Current Weather</a></li>
 						<li><a href="forecast.html" data-ajax='false' data-icon="false">Daily Forecast</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
@@ -103,6 +117,7 @@
 					</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"><a href="history.html" data-ajax='false'>NOTIFICATION</a></ul>
+			
 				<div class="user-menu">
 					<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
@@ -115,13 +130,17 @@
 					</ul>
 				</div>
 				</div>	
-
+	
+		
+				
+				
+	
 			</div>
 			</div>
 					<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Weather Bulletin</h1>
-					 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>History</h1>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
 								<i class='zmdi zmdi-share'></i>
 				</a>
 				
@@ -141,21 +160,12 @@
 		 
 		 
 
-			<div role="main" class="ui-content" data-inset="false">
-				<img id="imgLoader" src="img/ballRing.gif" class="loading">
-				<div class="nd2-card nd3-card">
-					<div class="card-media">
-						<div class="inner" style="text-align:justify;"></div>
-						<pre id="log"></pre>
-						<pre class="classList"></pre>
-					</div> 
-				</div> 
+			<div role="main" class="ui-content myMessage" data-inset="false">
+				
 			</div> 
 		</div> 
-		
-		
+	
 		<script src="cordova.js"></script>
-		<script src="telephonenumber.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/jquery.mobile.min.js"></script>
@@ -164,9 +174,69 @@
 		<script src="js/nativedroid2.js"></script>
 		<script src="nd2settings.js"></script>
 		<script src="js/jquery.rss.js"></script>
-		<script src="js/internet.js"></script>
-		<script src="js/errMsg.js"></script>
-		<script src="js/weather_bulletin.js"></script>
+		<script src="js/moment.min.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			sampledata();
+		});
+		function delAll(){
+		 localStorage.removeItem('testObject');
+		 location.reload();
+		}
+		
+		function delNotif(a){
+		var listToDelete = [a];
+			var arrayOfObjects = JSON.parse(localStorage.getItem('testObject'));
+			var t=[];
+			var myArr=[];
+				for(var i = 0; i < arrayOfObjects.length; i++) {
+					var obj = arrayOfObjects[i];
+					if(listToDelete.indexOf(obj.id) !== -1) {
+						arrayOfObjects.splice(i, 1);
+					}
+				}
+				for(var i = 0; i < arrayOfObjects.length; i++) {
+					var objs = arrayOfObjects[i];
+								myArr.push(objs);
+								localStorage.setItem('testObject', JSON.stringify(myArr));
+				}
+				location.reload();
+		}
+		
+		function sampledata(){
+			var d=new Date();
+			var n=d.getMilliseconds();
+			var title="My Message";
+			var testObject;
+			var myArr=[];
+			var t=[];
 			
+			
+			/*	for(var ctr=0; ctr<=5; ctr++){
+			 	n=t.length;
+			 	testObject = {'id': n, 'message': title + ctr, 'mdate': d.getMonth()+"/"+d.getDay()+"/"+d.getFullYear(), 'mtime': d.getHours() + ":" + ((d.getMinutes()<10)? "0" + d.getMinutes(): d.getMinutes())};
+			 	myArr.push(testObject);
+			 	localStorage.setItem('testObject', JSON.stringify(myArr));
+				var retrieveObject = localStorage.getItem('testObject');
+			 	t=localStorage.getItem('testObject',JSON.parse(retrieveObject));
+			 }*/
+			var a = JSON.parse(localStorage.getItem('testObject'));
+			if(a != null){
+						$('.myMessage').html("<a href='#' class='ui-btn ui-btn-raised clr-warning' onclick='delAll()'>Delete all</a>");
+			
+			}
+
+			
+			for(var ctr = a.length - 1; ctr>=0; ctr--){
+				var myString =" <div class='nd2-card' style='padding: 5px 5px 5px 5px'  >" + a[ctr].message + a[ctr].id+ "<div class='card-action align-right'><a href='#' onclick='delNotif("+a[ctr].id+")' class='ui-btn ui-btn-inline ui-btn-fab align-right'><i class='zmdi zmdi-delete'></i></div></div>";	
+	
+				
+				$('.myMessage').append(myString);
+			}
+		}
+		</script>
+
+
 	</body>
 </html>

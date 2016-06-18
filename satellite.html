@@ -53,11 +53,13 @@
 						</div>
 					</div>
 				</div>
-				<ul data-role="listview" data-inset="false"></ul>
+	<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsibleset">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
+					<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Current Weather</a></li>
+						<li><a href="forecast.html" data-ajax='false' data-icon="false">Daily Forecast</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
 						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
@@ -93,12 +95,12 @@
 								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
+							<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Radar and Satellite</h3>
+					<h3>Weather Forecast Images</h3>
 					<ul data-role="listview" data-icon="false">
 						<li><a href="weathermap.html#weathermap" data-ajax='false'>Weather Map</a></li>
 						<li><a href="satellite.html#satellite" data-ajax='false'>Satellite</a></li>
@@ -109,13 +111,26 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
-						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>				
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
-				
-	
+				<ul data-role="listview" data-inset="false"><a href="history.html" data-ajax='false'>NOTIFICATION</a></ul>
+				<div class="user-menu">
+					<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Real Time Weather</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
+						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
+						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
+					
+					</ul>
+				</div>
+			</div>	
+
+			</div>
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
