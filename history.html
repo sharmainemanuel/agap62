@@ -190,7 +190,7 @@
 			var arrayOfObjects = JSON.parse(localStorage.getItem('testObject'));
 			var t=[];
 			var myArr=[];
-				for(var i = 0; i < arrayOfObjects.length; i++) {
+				for(var i = 0; i < arrayOfObjects.length -1; i++) {
 					var obj = arrayOfObjects[i];
 					if(listToDelete.indexOf(obj.id) !== -1) {
 						arrayOfObjects.splice(i, 1);
